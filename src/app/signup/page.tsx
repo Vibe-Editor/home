@@ -7,9 +7,9 @@ function Navbar() {
   const router = useRouter();
   return (
     <nav className="w-full fixed top-0 left-0 bg-black/30 backdrop-blur-xl border-b border-white/10 flex items-center justify-between py-4 px-4 sm:px-8 z-50">
-      <div className="text-xl sm:text-2xl font-light tracking-wide text-white bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent cursor-pointer" onClick={() => router.push("/")}>Usuals.ai</div>
+      <div className="text-xl sm:text-2xl font-normal tracking-wide text-white bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent cursor-pointer" onClick={() => router.push("/")}>Usuals.ai</div>
       <button 
-        className="bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold rounded-full px-6 py-2 hover:from-blue-600 hover:to-purple-700 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl" 
+        className="bg-gradient-to-r from-blue-500 to-purple-600 text-white font-medium rounded-full px-6 py-2 hover:from-blue-600 hover:to-purple-700 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl" 
         onClick={() => router.push("/signup")}
       >
         Sign Up
@@ -46,7 +46,7 @@ function IconInput({ icon, ...props }: IconInputProps) {
       </span>
       <input 
         {...props} 
-        className={`pl-12 pr-4 py-4 w-full rounded-2xl border border-white/20 bg-white/5 backdrop-blur-sm text-white placeholder-gray-400 font-medium focus:outline-none focus:ring-2 focus:ring-blue-400/50 focus:border-blue-400/50 focus:bg-white/10 transition-all duration-300 ${props.className || ""}`}
+        className={`pl-12 pr-4 py-4 w-full rounded-2xl border border-white/20 bg-white/5 backdrop-blur-sm text-white placeholder-gray-400 font-normal focus:outline-none focus:ring-2 focus:ring-blue-400/50 focus:border-blue-400/50 focus:bg-white/10 transition-all duration-300 ${props.className || ""}`}
       />
     </div>
   );
@@ -69,7 +69,7 @@ function IconSelect({ icon, children, ...props }: IconSelectProps) {
       </span>
       <select 
         {...props} 
-        className={`pl-12 pr-10 py-4 w-full rounded-2xl border border-white/20 bg-white/5 backdrop-blur-sm text-white font-medium focus:outline-none focus:ring-2 focus:ring-blue-400/50 focus:border-blue-400/50 focus:bg-white/10 transition-all duration-300 appearance-none cursor-pointer ${props.className || ""}`}
+        className={`pl-12 pr-10 py-4 w-full rounded-2xl border border-white/20 bg-white/5 backdrop-blur-sm text-white font-normal focus:outline-none focus:ring-2 focus:ring-blue-400/50 focus:border-blue-400/50 focus:bg-white/10 transition-all duration-300 appearance-none cursor-pointer ${props.className || ""}`}
       >
         {children}
       </select>
@@ -154,7 +154,7 @@ export default function SignupPage() {
                 in{" "}
                 <span className="bg-gradient-to-r from-purple-400 to-pink-500 bg-clip-text text-transparent">Minutes</span>{" "}
               </h1>
-              <p className="text-gray-400 text-base sm:text-lg max-w-2xl leading-relaxed">
+              <p className="text-gray-400 text-base sm:text-lg max-w-2xl leading-relaxed font-normal">
               Turn any brief or your own clips into a polished reel, ad, or short film.
               Usuals.ai learns your style, scripts the story, builds the shots, and edits the cut so 10x your creativity
               </p>
