@@ -148,13 +148,15 @@ export default function SignupPage() {
           <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-4 sm:p-6 lg:p-12 flex flex-col justify-center w-full xl:w-2/3 shadow-2xl mb-6 xl:mb-0">
             <div className="mb-8">
               <h1 className="text-2xl sm:text-3xl lg:text-5xl xl:text-4xl font-bold text-white mb-6 leading-tight">
-                Create, Translate, and Personalize{" "}
-                <span className="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">Videos</span>{" "}
+              Write it. Drop it. Watch it.{" "}
+              <br />
+                <span className="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">Full Videos</span>{" "}
                 in{" "}
-                <span className="bg-gradient-to-r from-purple-400 to-pink-500 bg-clip-text text-transparent">Minutes</span>
+                <span className="bg-gradient-to-r from-purple-400 to-pink-500 bg-clip-text text-transparent">Minutes</span>{" "}
               </h1>
               <p className="text-gray-400 text-base sm:text-lg max-w-2xl leading-relaxed">
-                Create stunning videos with ease. Create your own or choose from our library of AI avatars and voices to bring your content to life.
+              Turn any brief or your own clips into a polished reel, ad, or short film.
+              Usuals.ai learns your style, scripts the story, builds the shots, and edits the cut so 10x your creativity
               </p>
             </div>
             <div className="relative flex ">
