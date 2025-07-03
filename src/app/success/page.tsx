@@ -2,7 +2,8 @@
 import React, { useEffect, useState, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 
-const GOOGLE_FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLScmtb68T0PE9ux3jc7uT6spr_sKuRXzrneT5qniPIuHjwuA-A/formResponse"; // Replace with your actual Google Form URL
+// Use the correct /formResponse endpoint for your form
+const GOOGLE_FORM_URL = "https://docs.google.com/forms/d/17qO2Uci4vrbiDXp-ngLUyHE7OC_KpfVYvxDrtLJa01o/formResponse";
 
 function SuccessContent() {
   const searchParams = useSearchParams();
@@ -34,7 +35,16 @@ function SuccessContent() {
           formDataToSend.append("entry.755360426", form.useCase);
           formDataToSend.append("entry.803028115", form.teamSize);
           formDataToSend.append("entry.1737138215", form.role);
-          formDataToSend.append("entry.879932707", "true"); // Status true
+          formDataToSend.append("entry.879932707", "True"); // Status True (capitalized for dropdown)
+          // Debug log
+          console.log("Submitting to Google Form (success):", {
+            fullName: form.fullName,
+            email: form.email,
+            useCase: form.useCase,
+            teamSize: form.teamSize,
+            role: form.role,
+            status: true
+          });
           await fetch(GOOGLE_FORM_URL, {
             method: "POST",
             body: formDataToSend,
@@ -50,7 +60,16 @@ function SuccessContent() {
           formDataToSend.append("entry.755360426", form.useCase);
           formDataToSend.append("entry.803028115", form.teamSize);
           formDataToSend.append("entry.1737138215", form.role);
-          formDataToSend.append("entry.879932707", "false"); // Status false
+          formDataToSend.append("entry.879932707", "False"); // Status False (capitalized for dropdown)
+          // Debug log
+          console.log("Submitting to Google Form (fail):", {
+            fullName: form.fullName,
+            email: form.email,
+            useCase: form.useCase,
+            teamSize: form.teamSize,
+            role: form.role,
+            status: false
+          });
           await fetch(GOOGLE_FORM_URL, {
             method: "POST",
             body: formDataToSend,
