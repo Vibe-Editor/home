@@ -1,6 +1,60 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { helioConfig } from '@/lib/helio-config'
 
+// TypeScript interfaces for Hel.io API response
+interface CustomerDetails {
+  email: string
+  discordUser: string | null
+  telegramUser: string | null
+}
+
+interface TokenQuote {
+  from: string
+  fromAmountDecimal: string
+  to: string
+  toAmountMinimal: string
+}
+
+interface TransactionMeta {
+  id: string
+  amount: string
+  senderPK: string
+  recipientPK: string
+  transactionType: string
+  customerDetails: CustomerDetails
+  productDetails: any | null
+  additionalProductDetails: any[]
+  transactionSignature: string
+  transactionStatus: 'SUCCESS' | 'PENDING' | 'FAILED'
+  splitRevenue: boolean
+  remainingAccounts: any[]
+  totalAmount: string
+  totalAmountAsUSD: string
+  affiliateAmount: string
+  tokenQuote: TokenQuote
+  shopifyPaymentDetails: any | null
+  submitGeolocation: string
+}
+
+interface Transaction {
+  id: string
+  paylinkId: string
+  fee: string
+  quantity: number
+  createdAt: string
+  paymentType: 'PAYLINK' | string
+  meta: TransactionMeta
+}
+
+interface Subscription {
+  id: string
+  status: 'ACTIVE' | 'INACTIVE' | 'EXPIRED'
+  email: string
+  renewalDate: string
+  createdAt: string
+  transactions: Transaction[]
+}
+
 export async function GET(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url)
@@ -32,13 +86,13 @@ export async function GET(request: NextRequest) {
       )
     }
 
-    const subscriptions = await response.json()
+    const subscriptions: Subscription[] = await response.json()
     
     // Check if the provided email exists in any of the successful transactions
-    const emailFound = subscriptions.some((subscription: any) => {
+    const emailFound = subscriptions.some((subscription: Subscription) => {
       return subscription.email === email && 
              subscription.status === 'ACTIVE' &&
-             subscription.transactions.some((transaction: any) => 
+             subscription.transactions.some((transaction: Transaction) => 
                transaction.meta.transactionStatus === 'SUCCESS'
              )
     })
