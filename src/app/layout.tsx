@@ -44,6 +44,7 @@ export default function RootLayout({
       <body
         className={`${instrumentSans.className} antialiased`}
       >
+        {/* <a href="/success?session_id=cs_test_example" className="text-blue-600 underline">Test Success Page</a> */}
         {children}
       </body>
     </html>
