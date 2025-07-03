@@ -1,7 +1,7 @@
 "use client"
 
 import { useRouter } from "next/navigation"
-import { ArrowRight, Play, Menu } from "lucide-react"
+import { ArrowRight, Play } from "lucide-react"
 
 function Navbar() {
   const router = useRouter()
@@ -18,7 +18,7 @@ function Navbar() {
         </div>
 
         {/* Navigation Links - Hidden on mobile */}
-        <div className="hidden md:flex items-center gap-8">
+        {/* <div className="hidden md:flex items-center gap-8">
           <a
             href="#features"
             className="text-[#636f8a] hover:text-white transition-all duration-300 text-sm font-medium relative group"
@@ -40,7 +40,7 @@ function Navbar() {
             About
             <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#0097fc] transition-all duration-300 group-hover:w-full"></span>
           </a>
-        </div>
+        </div> */}
       </div>
 
       <div className="flex items-center gap-4">
@@ -62,9 +62,9 @@ function Navbar() {
         </button>
 
         {/* Mobile Menu Button */}
-        <button className="md:hidden text-[#636f8a] hover:text-white transition-colors duration-300">
+        {/* <button className="md:hidden text-[#636f8a] hover:text-white transition-colors duration-300">
           <Menu size={24} />
-        </button>
+        </button> */}
       </div>
     </nav>
   )
