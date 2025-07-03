@@ -2,7 +2,7 @@
 
 import { useState, type ChangeEvent, type FormEvent } from "react"
 import { useRouter } from "next/navigation"
-import { User, Mail, ArrowRight } from "lucide-react"
+import { User, Mail, ArrowRight, Lightbulb, Users, CreditCard } from "lucide-react"
 import { cn } from "@/lib/utils"
 
 function Navbar() {
@@ -47,23 +47,68 @@ function IconInput({ icon, ...props }: IconInputProps) {
   )
 }
 
+type IconSelectProps = {
+  icon: React.ReactNode
+  value: string
+  onChange: (e: ChangeEvent<HTMLSelectElement>) => void
+  required?: boolean
+  className?: string
+  children: React.ReactNode
+}
+
+function IconSelect({ icon, children, ...props }: IconSelectProps) {
+  return (
+    <div className="relative w-full mb-6">
+      <span className="absolute left-4 top-1/2 -translate-y-1/2 text-[#636f8a] text-lg opacity-80 z-10">{icon}</span>
+      <select
+        {...props}
+        className={`pl-12 pr-10 py-4 w-full rounded-2xl border border-[#495266] bg-[#21252e]/50 backdrop-blur-sm text-white font-normal focus:outline-none focus:ring-2 focus:ring-[#0097fc]/50 focus:border-[#0097fc]/50 transition-all duration-300 appearance-none cursor-pointer ${props.className || ""}`}
+      >
+        {children}
+      </select>
+      <span className="absolute right-4 top-1/2 -translate-y-1/2 text-[#636f8a] pointer-events-none text-sm">▼</span>
+    </div>
+  )
+}
+
 export default function SignupPage() {
-  const [formData, setFormData] = useState({ fullName: "", email: "" })
+  const [formData, setFormData] = useState({
+    fullName: "",
+    email: "",
+    useCase: "",
+    teamSize: "",
+    role: ""
+  })
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [step, setStep] = useState(1)
+  const [animating, setAnimating] = useState(false)
 
   const handleInputChange = (field: string, value: string) => {
     setFormData((prev) => ({ ...prev, [field]: value }))
   }
 
-  const handleRegister = async (e: FormEvent<HTMLButtonElement>) => {
+  const handleContinue = (e: FormEvent<HTMLButtonElement>) => {
     e.preventDefault()
     if (!formData.fullName || !formData.email) return
+    setAnimating(true)
+    setTimeout(() => {
+      setStep(2)
+      setAnimating(false)
+    }, 400)
+  }
+
+  const handleStripe = async (e: FormEvent<HTMLButtonElement>) => {
+    e.preventDefault()
+    if (!formData.fullName || !formData.email || !formData.useCase || !formData.teamSize || !formData.role) return
     setIsSubmitting(true)
+    // Save form data to localStorage (status is false for now)
+    const formToStore = { ...formData, status: false }
+    localStorage.setItem("registrationFormData", JSON.stringify(formToStore))
     try {
       const res = await fetch("/api/create-checkout-session", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ fullName: formData.fullName, email: formData.email }),
+        body: JSON.stringify(formData),
       })
       const data = await res.json()
       if (data.url) {
@@ -117,33 +162,115 @@ export default function SignupPage() {
             <div className="p-4 sm:p-6 shadow-2xl bg-transparent">
               <div className="w-full">
                 <div className="text-center mb-8">
-                  <h2 className="text-2xl lg:text-3xl font-semibold text-white mb-2">Get Started</h2>
-                  <p className="text-[#636f8a]">Enter your name and email to begin registration</p>
+                  <h2 className="text-2xl lg:text-3xl font-semibold text-white mb-2">
+                    {step === 1 ? "Get Started" : "Tell us about yourself"}
+                  </h2>
+                  <p className="text-[#636f8a]">
+                    {step === 1
+                      ? "Create your account to start making videos"
+                      : "Help us personalize your experience"}
+                  </p>
+                  <div className="flex justify-center mt-6 mb-2">
+                    <div className="flex gap-2">
+                      <div className={`w-3 h-3 rounded-full transition-all duration-300 ${step >= 1 ? "bg-[#fcc60e]" : "bg-[#495266]"}`} />
+                      <div className={`w-3 h-3 rounded-full transition-all duration-300 ${step >= 2 ? "bg-[#fcc60e]" : "bg-[#495266]"}`} />
+                    </div>
+                  </div>
+                  <p className="text-xs text-[#636f8a]">Step {step} of 2</p>
                 </div>
-                <IconInput
-                  type="text"
-                  placeholder="Full Name"
-                  icon={<User size={18} />}
-                  value={formData.fullName}
-                  onChange={(e) => handleInputChange("fullName", e.target.value)}
-                  required
-                />
-                <IconInput
-                  type="email"
-                  placeholder="Email Address"
-                  icon={<Mail size={18} />}
-                  value={formData.email}
-                  onChange={(e) => handleInputChange("email", e.target.value)}
-                  required
-                />
-                <button
-                  type="button"
-                  className="w-full bg-[#fcc60e] text-[#13151a] font-medium rounded-2xl px-6 py-4 mt-4 hover:bg-[#e6b30d] transform hover:scale-[1.02] transition-all duration-300 shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
-                  disabled={!formData.fullName || !formData.email || isSubmitting}
-                  onClick={handleRegister}
-                >
-                  {isSubmitting ? "Redirecting to Payment..." : <>Continue <ArrowRight size={18} className="inline ml-2" /></>}
-                </button>
+                {step === 1 && (
+                  <div className={`transition-all duration-400 ${!animating ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-5"}`}>
+                    <IconInput
+                      type="text"
+                      placeholder="Full Name"
+                      icon={<User size={18} />}
+                      value={formData.fullName}
+                      onChange={(e) => handleInputChange("fullName", e.target.value)}
+                      required
+                    />
+                    <IconInput
+                      type="email"
+                      placeholder="Email Address"
+                      icon={<Mail size={18} />}
+                      value={formData.email}
+                      onChange={(e) => handleInputChange("email", e.target.value)}
+                      required
+                    />
+                    <button
+                      type="button"
+                      className="w-full bg-[#fcc60e] text-[#13151a] font-medium rounded-2xl px-6 py-4 mt-4 hover:bg-[#e6b30d] transform hover:scale-[1.02] transition-all duration-300 shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+                      disabled={!formData.fullName || !formData.email || isSubmitting}
+                      onClick={handleContinue}
+                    >
+                      Continue <ArrowRight size={18} className="inline ml-2" />
+                    </button>
+                  </div>
+                )}
+                {step === 2 && (
+                  <div className={`transition-all duration-400 ${!animating ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-5"}`}>
+                    <IconSelect
+                      icon={<Lightbulb size={18} />}
+                      value={formData.useCase}
+                      onChange={(e) => handleInputChange("useCase", e.target.value)}
+                      required
+                    >
+                      <option value="">What&apos;s your primary use case?</option>
+                      <option value="Work">Work</option>
+                      <option value="Personal">Personal</option>
+                      <option value="School">School</option>
+                      <option value="Agency">Agency</option>
+                      <option value="Other">Other</option>
+                    </IconSelect>
+                    <IconSelect
+                      icon={<Users size={18} />}
+                      value={formData.teamSize}
+                      onChange={(e) => handleInputChange("teamSize", e.target.value)}
+                      required
+                    >
+                      <option value="">What&apos;s your team size?</option>
+                      <option value="Just me">Just me</option>
+                      <option value="2-9">2-9 people</option>
+                      <option value="10-49">10-49 people</option>
+                      <option value="50-199">50-199 people</option>
+                      <option value="200-499">200-499 people</option>
+                      <option value="500-999">500-999 people</option>
+                      <option value="1000+">1000+ people</option>
+                    </IconSelect>
+                    <IconSelect
+                      icon={<CreditCard size={18} />}
+                      value={formData.role}
+                      onChange={(e) => handleInputChange("role", e.target.value)}
+                      required
+                    >
+                      <option value="">What&apos;s your role?</option>
+                      <option value="Marketer">Marketer</option>
+                      <option value="Business Owner">Business Owner</option>
+                      <option value="Creative Director">Creative Director</option>
+                      <option value="Digital Marketing Agency">Digital Marketing Agency</option>
+                      <option value="Content Creator">Content Creator</option>
+                      <option value="Developer">Developer</option>
+                      <option value="Student">Student</option>
+                      <option value="Other">Other</option>
+                    </IconSelect>
+                    <div className="flex gap-4 mt-6">
+                      <button
+                        type="button"
+                        className="flex-1 bg-[#fcc60e] text-[#13151a] font-medium rounded-2xl px-6 py-2 hover:bg-[#e6b30d] transform hover:scale-[1.02] transition-all duration-300 shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+                        disabled={isSubmitting || !formData.fullName || !formData.email || !formData.useCase || !formData.teamSize || !formData.role}
+                        onClick={handleStripe}
+                      >
+                        {isSubmitting ? "Redirecting to Payment..." : <>Pay with Stripe <ArrowRight size={18} className="inline ml-2" /></>}
+                      </button>
+                      <button
+                        type="button"
+                        className="flex-1 bg-gray-400 text-white font-medium rounded-2xl px-6 py-4 cursor-not-allowed opacity-60"
+                        disabled
+                      >
+                        Pay with Crypto
+                      </button>
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
           </div>
