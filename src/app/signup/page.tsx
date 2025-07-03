@@ -72,7 +72,7 @@ function IconSelect({ icon, children, ...props }: IconSelectProps) {
   )
 }
 
-export default function SignupPage() {
+export default function PreOrderPage() {
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
@@ -128,11 +128,8 @@ export default function SignupPage() {
     e.preventDefault()
     if (!formData.fullName || !formData.email || !formData.useCase || !formData.teamSize || !formData.role) return
     setIsSubmitting(true)
-    // Save form data to localStorage (status is false for now)
     const formToStore = { ...formData, status: false }
     localStorage.setItem("registrationFormData", JSON.stringify(formToStore))
-    
-    // Redirect to the Hel.io payment link
     window.location.href = helioConfig.paymentUrl
   }
 
@@ -180,7 +177,7 @@ export default function SignupPage() {
                   </h2>
                   <p className="text-[#636f8a]">
                     {step === 1
-                      ? "Create your account to start making videos"
+                      ? "Pre-order to start making videos"
                       : "Help us personalize your experience"}
                   </p>
                   <div className="flex justify-center mt-6 mb-2">

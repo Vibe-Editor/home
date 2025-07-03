@@ -67,8 +67,15 @@ export async function GET(request: NextRequest) {
       )
     }
 
+    console.log('Verifying crypto payment for email:', email)
+
     // Construct the Hel.io API URL with parameters
     const url = `${helioConfig.apiUrl}?paylink=${helioConfig.paylinkId}&apiKey=${helioConfig.apiKey}`
+    
+    console.log('Fetching from Hel.io API:', url)
+    console.log('Paylink ID:', helioConfig.paylinkId)
+    console.log('API Key:', helioConfig.apiKey ? 'Present' : 'Missing')
+    console.log('Bearer Token:', helioConfig.bearerToken ? 'Present' : 'Missing')
     
     // Make the request to Hel.io API
     const response = await fetch(url, {
@@ -79,23 +86,42 @@ export async function GET(request: NextRequest) {
       }
     })
 
+    console.log("THIS IS THE RESPONSE ------------>", response);
+    console.log("Response status:", response.status);
+    console.log("Response statusText:", response.statusText);
+
     if (!response.ok) {
+      console.error('Hel.io API response not ok:', response.status, response.statusText)
       return NextResponse.json(
-        { success: false, error: 'Failed to fetch payment data' },
+        { success: false, error: 'Failed to fetch payment data from Hel.io' },
         { status: 500 }
       )
     }
 
     const subscriptions: Subscription[] = await response.json()
+    console.log('Received subscriptions from Hel.io:', subscriptions.length)
     
     // Check if the provided email exists in any of the successful transactions
     const emailFound = subscriptions.some((subscription: Subscription) => {
-      return subscription.email === email && 
-             subscription.status === 'ACTIVE' &&
-             subscription.transactions.some((transaction: Transaction) => 
-               transaction.meta.transactionStatus === 'SUCCESS'
-             )
+      const emailMatch = subscription.email === email
+      const isActive = subscription.status === 'ACTIVE'
+      const hasSuccessfulTransaction = subscription.transactions.some((transaction: Transaction) => 
+        transaction.meta.transactionStatus === 'SUCCESS'
+      )
+      
+      console.log(`Subscription check for ${email}:`, {
+        emailMatch,
+        isActive,
+        hasSuccessfulTransaction,
+        subscriptionEmail: subscription.email,
+        subscriptionStatus: subscription.status,
+        transactionCount: subscription.transactions.length
+      })
+      
+      return emailMatch && isActive && hasSuccessfulTransaction
     })
+
+    console.log('Email found in successful transactions:', emailFound)
 
     if (emailFound) {
       return NextResponse.json({

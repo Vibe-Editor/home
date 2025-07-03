@@ -61,7 +61,7 @@ function Navbar() {
           Watch Demo
         </motion.button>
 
-        {/* Sign Up Button */}
+        {/* Pre-order Button */}
         <motion.button
           onClick={() => router.push("/signup")}
           className="relative group overflow-hidden bg-[#0097fc] text-white font-medium rounded-full px-6 py-2 shadow-lg"
@@ -73,7 +73,7 @@ function Navbar() {
           transition={{ type: "spring", stiffness: 400, damping: 17 }}
         >
           <span className="relative z-10 flex items-center gap-2">
-            Sign Up
+            Pre-order
             <motion.div whileHover={{ x: 4 }} transition={{ type: "spring", stiffness: 400, damping: 17 }}>
               <ArrowRight size={16} />
             </motion.div>
@@ -289,7 +289,7 @@ function HomePage() {
               whileTap={{ scale: 0.95 }}
               transition={{ type: "spring", stiffness: 400, damping: 17 }}
             >
-              Sign Up
+                            Pre-order
               <motion.div whileHover={{ x: 4 }} transition={{ type: "spring", stiffness: 400, damping: 17 }}>
                 <ArrowRight size={20} />
               </motion.div>
