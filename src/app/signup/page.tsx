@@ -3,6 +3,7 @@
 import { useState, type ChangeEvent, type FormEvent, type ReactNode } from "react"
 import { useRouter } from "next/navigation"
 import { User, Mail, Lightbulb, Users, CreditCard, ArrowRight, CheckCircle } from "lucide-react"
+import { cn } from "@/lib/utils"
 
 function Navbar() {
   const router = useRouter()
@@ -95,7 +96,6 @@ export default function SignupPage() {
     teamSize: "",
     role: "",
   })
-
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [submitStatus, setSubmitStatus] = useState<null | "success" | "error">(null)
   const [step, setStep] = useState(1)
@@ -127,6 +127,7 @@ export default function SignupPage() {
     try {
       const googleFormUrl =
         "https://docs.google.com/forms/d/e/1FAIpQLScmtb68T0PE9ux3jc7uT6spr_sKuRXzrneT5qniPIuHjwuA-A/formResponse"
+
       const formDataToSend = new FormData()
       formDataToSend.append("entry.1885883987", formData.fullName)
       formDataToSend.append("entry.1234487408", formData.email)
@@ -157,8 +158,21 @@ export default function SignupPage() {
   return (
     <>
       <Navbar />
-      <div className="min-h-screen relative overflow-hidden" style={{ background: "#13151a" }}>
+      <div className="min-h-screen relative overflow-hidden bg-[#13151a]">
+        {/* Dot Background */}
+        <div
+          className={cn(
+            "absolute inset-0",
+            "[background-size:20px_20px]",
+            "[background-image:radial-gradient(#404040_1px,transparent_1px)]",
+          )}
+        />
+
+        {/* Radial gradient for the container to give a faded look */}
+        <div className="pointer-events-none absolute inset-0 flex items-center justify-center bg-[#13151a] [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>
+
         <AnimatedBackground />
+
         <div className="w-full min-h-2 flex flex-col xl:flex-row items-center justify-center pt-20 pb-8 px-2 sm:px-4 relative z-10 gap-6 xl:gap-9 max-w-7xl mx-auto mt-6">
           {/* Left Card */}
           <div className="bg-[#21252e]/50 backdrop-blur-xl border border-[#495266] rounded-3xl p-4 sm:p-6 lg:p-12 flex flex-col justify-center w-full xl:w-2/3 shadow-2xl mb-6 xl:mb-0">
@@ -225,7 +239,6 @@ export default function SignupPage() {
                         ? "Create your account to start making videos"
                         : "Help us personalize your experience"}
                     </p>
-
                     {/* Progress indicator */}
                     <div className="flex justify-center mt-6 mb-2">
                       <div className="flex gap-2">
