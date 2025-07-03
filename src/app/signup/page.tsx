@@ -4,6 +4,7 @@ import { useState, type ChangeEvent, type FormEvent } from "react"
 import { useRouter } from "next/navigation"
 import { User, Mail, ArrowRight, Lightbulb, Users, CreditCard } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { helioConfig } from "@/lib/helio-config"
 
 function Navbar() {
   const router = useRouter()
@@ -121,6 +122,18 @@ export default function SignupPage() {
       setIsSubmitting(false)
       alert("Failed to start payment. Please try again.")
     }
+  }
+
+  const handleCrypto = async (e: FormEvent<HTMLButtonElement>) => {
+    e.preventDefault()
+    if (!formData.fullName || !formData.email || !formData.useCase || !formData.teamSize || !formData.role) return
+    setIsSubmitting(true)
+    // Save form data to localStorage (status is false for now)
+    const formToStore = { ...formData, status: false }
+    localStorage.setItem("registrationFormData", JSON.stringify(formToStore))
+    
+    // Redirect to the Hel.io payment link
+    window.location.href = helioConfig.paymentUrl
   }
 
   return (
@@ -263,10 +276,11 @@ export default function SignupPage() {
                       </button>
                       <button
                         type="button"
-                        className="flex-1 bg-gray-400 text-white font-medium rounded-2xl px-6 py-4 cursor-not-allowed opacity-60"
-                        disabled
+                        className="flex-1 bg-[#0097fc] text-white font-medium rounded-2xl px-6 py-4 hover:bg-[#0080d6] transform hover:scale-[1.02] transition-all duration-300 shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+                        disabled={isSubmitting || !formData.fullName || !formData.email || !formData.useCase || !formData.teamSize || !formData.role}
+                        onClick={handleCrypto}
                       >
-                        Pay with Crypto
+                        {isSubmitting ? "Redirecting to Payment..." : "Pay with Crypto"}
                       </button>
                     </div>
                   </div>
