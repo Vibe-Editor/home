@@ -289,7 +289,7 @@ function HomePage() {
               whileTap={{ scale: 0.95 }}
               transition={{ type: "spring", stiffness: 400, damping: 17 }}
             >
-              Start free
+              Sign Up
               <motion.div whileHover={{ x: 4 }} transition={{ type: "spring", stiffness: 400, damping: 17 }}>
                 <ArrowRight size={20} />
               </motion.div>

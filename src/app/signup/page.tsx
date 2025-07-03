@@ -259,7 +259,7 @@ export default function SignupPage() {
                         disabled={isSubmitting || !formData.fullName || !formData.email || !formData.useCase || !formData.teamSize || !formData.role}
                         onClick={handleStripe}
                       >
-                        {isSubmitting ? "Redirecting to Payment..." : <>Pay with Stripe <ArrowRight size={18} className="inline ml-2" /></>}
+                        {isSubmitting ? "Redirecting to Payment..." : <>Pay with Stripe</>}
                       </button>
                       <button
                         type="button"
