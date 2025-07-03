@@ -2,13 +2,11 @@
 import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: "2023-10-16",
-});
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
 
 export async function POST(req: NextRequest) {
   try {
-    const { fullName, email } = await req.json();
+    const { fullName, email, useCase, teamSize, role } = await req.json();
     const session = await stripe.checkout.sessions.create({
       payment_method_types: ["card"],
       mode: "payment",
@@ -27,6 +25,9 @@ export async function POST(req: NextRequest) {
       metadata: {
         fullName: fullName || "",
         email: email || "",
+        useCase: useCase || "",
+        teamSize: teamSize || "",
+        role: role || "",
       },
       customer_email: email || undefined,
     });
