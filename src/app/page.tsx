@@ -11,12 +11,12 @@ function Navbar() {
   const router = useRouter()
 
   return (
-    <nav className="w-full fixed top-0 left-0 backdrop-blur-xl flex items-center justify-between py-4 px-4 sm:px-8 z-50">
+    <nav className="w-full fixed top-0 left-0 flex items-center justify-between py-4 px-4 sm:px-8 z-50">
       <div
         className="text-xl sm:text-2xl font-normal tracking-wide text-[#fcc60e] cursor-pointer"
         onClick={() => router.push("/")}
       >
-        Usuals.ai
+        <img src='./image.png' className="w-8 h-8 object-contain inline-block align-middle" />
       </div>
     </nav>
   )
@@ -187,17 +187,17 @@ export default function PreOrderPage() {
             {/* Main Cards Container with responsive spacing */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12 p-4 mr-0 lg:mr-[-25px]">
               {/* Left Card - Image with Overlay */}
-              <div className="bg-gradient-to-br w-[400px]  from-blue-500 via-blue-600 to-blue-700 rounded-2xl overflow-hidden relative h-[500px] shadow-2xl mt-[26px] ml-[79px] mb-[17px]">
+              <div className="bg-gradient-to-br md:w-[400px]  bg-blue-500 rounded-2xl overflow-hidden relative h-[500px] shadow-2xl mt-[26px] md:ml-[79px] mb-[17px]">
                 {/* Background Image Placeholder */}
-                <div className="absolute w-[260px] inset-0 bg-gradient-to-br from-blue-400 via-blue-500 to-blue-600 ml-[100px]">
+                <div className="absolute w-[260px] inset-0 bg-gradient-to-br bg-blue-500 ml-[100px]">
                   <div className="absolute inset-0 bg-[url('/placeholder.svg?height=500&width=300')] bg-cover bg-center opacity-80 mt-[-1px]"></div>
                   {/* Golden Gate Bridge Style Elements */}
-                  <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-green-600/60 to-transparent mb-0"></div>
+                  <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t bg-blue-500  to-transparent mb-0"></div>
                   <div className="absolute top-10 left-10 right-10 h-40 bg-gradient-to-b from-white/30 to-transparent rounded-full blur-3xl"></div>
                 </div>
 
                 {/* Overlay Content - Centered */}
-                <div className="absolute w-[300px] inset-0 flex items-center justify-center mr-[-4px] ml-[75px]">
+                <div className="absolute w-[300px] inset-0 flex items-center justify-center mr-[-4px] ml-[20px]">
                   <div className="text-white text-center">
                     <div className="flex items-center justify-center gap-2 mb-4">
                       <div className="w-1 h-1 bg-white rounded-full"></div>
