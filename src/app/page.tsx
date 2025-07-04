@@ -197,20 +197,19 @@ export default function PreOrderPage() {
                 </div>
 
                 {/* Overlay Content - Bottom Center */}
-                <div className="absolute w-[300px] inset-0 flex items-end justify-center mr-[-4px] ml-[20px] pb-8">
+                <div className="absolute w-[300px] inset-0 flex items-end justify-center mr-[-4px] ml-[50px] pb-8">
                   <div className="text-white text-center w-full">
                     <div className="flex items-center justify-center gap-2 mb-4">
-                      <div className="w-1 h-1 bg-white rounded-full"></div>
-                      <span className="text-sm font-medium tracking-wide">Usuals.ai</span>
+                      <span className="text-3xl font-bold tracking-wide">Usuals.ai</span>
                     </div>
-                    <h2 className="text-xl font-bold mb-2 tracking-tight">An AI video editor that turns your inputs into finished videos</h2>
-                    <p className="text-xl italic font-light tracking-wide">One Video</p>
+                    <h2 className="text-xl font-semibold mb-2 tracking-tight">An AI video editor that turns your inputs into finished videos</h2>
+                    {/* <p className="text-xl font-medium tracking-wide">One Prompt One Video</p> */}
                   </div>
                 </div>
               </div>
 
               {/* Right Card - Invitation Form */}
-              <div className="bg-gradient-to-b from-[#1F1F1E]/80 via-[#1F1F1E]/80 to-black backdrop-blur-xl border border-[#495266] rounded-2xl p-4 shadow-2xl h-[500px] flex flex-col px-4 py-4 mx-0 lg:mx-[-13px] mt-[26px] mb-[17px] lg:mr-[105px] lg:ml-[-24px]">
+              <div className="bg-gradient-to-b from-[#1F1F1E]/80 via-[#1F1F1E]/80 via-[#1F1F1E]/60 to-[#0a0a0a] backdrop-blur-xl border border-[#495266] rounded-2xl p-4 shadow-2xl h-[500px] flex flex-col px-4 py-4 mx-0 lg:mx-[-13px] mt-[26px] mb-[17px] lg:mr-[105px] lg:ml-[-24px]">
                 {/* Logo */}
                 <div className="flex justify-center mb-6">
                   <div className=" mt-3 w-7 h-7 flex items-center justify-center">
@@ -249,7 +248,7 @@ export default function PreOrderPage() {
                       <p className="text-[#636f8a] text-sm mt-3">Don't have code?</p>
                     </div>
                     <button
-                      className="w-full border border-[#fcc60e] text-[#fcc60e] font-medium rounded-xl px-6 py-2 hover:bg-[#fcc60e] hover:text-black transition-all duration-300 mb-20 "
+                      className="w-full border border-[#fcc60e] text-[#fcc60e] font-medium rounded-xl px-6 py-2 hover:bg-[#fcc60e] hover:text-black transition-all duration-300 mb-20 mt-4 "
                       onClick={() => setShowInvitationForm(false)}
                     >
                       Pre-order
