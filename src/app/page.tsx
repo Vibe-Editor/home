@@ -169,25 +169,25 @@ export default function PreOrderPage() {
         <div className="w-full min-h-screen flex items-center justify-center pt-20 pb-8 px-4 relative z-10 flex-row mx-0 mb-px">
           <div className="max-w-5xl w-full relative">
             {/* Mobile Background Cards - Individual for each card */}
-            <div className="lg:hidden">
+            {/* <div className="lg:hidden"> */}
               {/* First card background */}
-              <div className="absolute top-10 left-3 right-3 h-[508px] bg-[#1F1F1E]/20 backdrop-blur-2xl border border-[#495266]/30 rounded-3xl transform scale-[1.02] -z-10"></div>
+              {/* <div className="absolute top-10 left-3 right-3 h-[508px] bg-[#1F1F1E]/20 backdrop-blur-2xl border border-[#495266]/30 rounded-3xl transform scale-[1.02] -z-10"></div> */}
               {/* Second card background */}
-              <div className="absolute top-[605px] left-3 right-3 h-[508px] bg-[#1F1F1E]/20 backdrop-blur-2xl border border-[#495266]/30 rounded-3xl transform scale-[1.02] -z-10"></div>
-            </div>
+              {/* <div className="absolute top-[605px] left-3 right-3 h-[508px] bg-[#1F1F1E]/20 backdrop-blur-2xl border border-[#495266]/30 rounded-3xl transform scale-[1.02] -z-10"></div> */}
+            {/* </div> */}
 
             {/* Desktop Background Cards */}
             {/* Left background card */}
-            <div className="hidden w-[400px] lg:block absolute top-2 bottom-2  right-1/2 bg-[#1F1F1E]/20 backdrop-blur-2xl border border-[#495266]/30 rounded-3xl transform scale-105 -z-10 ml-[9px] mr-[15px] mt-[39px] mb-[29px]"></div>
+            {/* <div className="hidden w-[400px] lg:block absolute top-2 bottom-2  right-1/2 bg-[#1F1F1E]/20 backdrop-blur-2xl border border-[#495266]/30 rounded-3xl transform scale-105 -z-10 ml-[9px] mr-[15px] mt-[39px] mb-[29px]"></div> */}
             {/* Right background card */}
-            <div className="hidden lg:block absolute top-2 bottom-2 right-2 left-1/2 bg-[#1F1F1E]/20 backdrop-blur-2xl border border-[#495266]/30 rounded-3xl transform scale-105 -z-10 mr-[90px] ml-[15px] mt-[39px] mb-[29px]">
+            {/* <div className="hidden lg:block absolute top-2 bottom-2 right-2 left-1/2 bg-[#1F1F1E]/20 backdrop-blur-2xl border border-[#495266]/30 rounded-3xl transform scale-105 -z-10 mr-[90px] ml-[15px] mt-[39px] mb-[29px]">
             
-            </div>
+            </div> */}
 
             {/* Main Cards Container with responsive spacing */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12 p-4 mr-0 lg:mr-[-25px]">
               {/* Left Card - Image with Overlay */}
-              <div className="bg-gradient-to-br md:w-[400px]  bg-blue-500 rounded-2xl overflow-hidden relative h-[500px] shadow-2xl mt-[26px] md:ml-[79px] mb-[17px]">
+              <div className="bg-gradient-to-br md:w-[404px]  bg-blue-500 rounded-2xl overflow-hidden relative h-[500px] shadow-2xl mt-[26px] md:ml-[79px] mb-[17px]">
                 {/* Background Image Placeholder */}
                 <div className="absolute w-[260px] inset-0 bg-gradient-to-br bg-blue-500 ml-[100px]">
                   <div className="absolute inset-0 bg-[url('/placeholder.svg?height=500&width=300')] bg-cover bg-center opacity-80 mt-[-1px]"></div>
@@ -196,24 +196,24 @@ export default function PreOrderPage() {
                   <div className="absolute top-10 left-10 right-10 h-40 bg-gradient-to-b from-white/30 to-transparent rounded-full blur-3xl"></div>
                 </div>
 
-                {/* Overlay Content - Centered */}
-                <div className="absolute w-[300px] inset-0 flex items-center justify-center mr-[-4px] ml-[20px]">
-                  <div className="text-white text-center">
+                {/* Overlay Content - Bottom Center */}
+                <div className="absolute w-[300px] inset-0 flex items-end justify-center mr-[-4px] ml-[20px] pb-8">
+                  <div className="text-white text-center w-full">
                     <div className="flex items-center justify-center gap-2 mb-4">
                       <div className="w-1 h-1 bg-white rounded-full"></div>
                       <span className="text-sm font-medium tracking-wide">Usuals.ai</span>
                     </div>
-                    <h2 className="text-3xl font-bold mb-2 tracking-tight">One Prompt</h2>
+                    <h2 className="text-xl font-bold mb-2 tracking-tight">An AI video editor that turns your inputs into finished videos</h2>
                     <p className="text-xl italic font-light tracking-wide">One Video</p>
                   </div>
                 </div>
               </div>
 
               {/* Right Card - Invitation Form */}
-              <div className="bg-[#1F1F1E]/80 backdrop-blur-xl border border-[#495266] rounded-2xl p-4 shadow-2xl h-[500px] flex flex-col px-4 py-4 mx-0 lg:mx-[-13px] mt-[26px] mb-[17px] lg:mr-[105px] lg:ml-[-24px]">
+              <div className="bg-gradient-to-b from-[#1F1F1E]/80 via-[#1F1F1E]/80 to-black backdrop-blur-xl border border-[#495266] rounded-2xl p-4 shadow-2xl h-[500px] flex flex-col px-4 py-4 mx-0 lg:mx-[-13px] mt-[26px] mb-[17px] lg:mr-[105px] lg:ml-[-24px]">
                 {/* Logo */}
                 <div className="flex justify-center mb-6">
-                  <div className="w-12 h-12 flex items-center justify-center">
+                  <div className=" mt-3 w-7 h-7 flex items-center justify-center">
                     <Image
                       src="/image.png"
                       alt="Usuals.ai Logo"
@@ -249,7 +249,7 @@ export default function PreOrderPage() {
                       <p className="text-[#636f8a] text-sm mt-3">Don't have code?</p>
                     </div>
                     <button
-                      className="w-full border border-[#495266] text-[#636f8a] font-medium rounded-xl px-6 py-2 hover:border-[#fcc60e]/50 hover:text-[#fcc60e] transition-all duration-300 mb-20 "
+                      className="w-full border border-[#fcc60e] text-[#fcc60e] font-medium rounded-xl px-6 py-2 hover:bg-[#fcc60e] hover:text-black transition-all duration-300 mb-20 "
                       onClick={() => setShowInvitationForm(false)}
                     >
                       Pre-order

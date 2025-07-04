@@ -151,7 +151,7 @@ export default function CancelPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.7, duration: 0.8 }}
             >
-              <Link href="/signup">
+              <Link href="/">
                 <motion.button 
                   className="group bg-[#0097fc] text-white font-medium rounded-full px-8 py-3 shadow-lg flex items-center gap-2 mx-auto"
                   whileHover={{
