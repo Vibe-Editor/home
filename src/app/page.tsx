@@ -227,13 +227,13 @@ export default function PreOrderPage() {
                 {/* Welcome Text */}
                 <div className="text-center mb-8">
                   <p className="text-[#636f8a] text-sm leading-relaxed">
-                  Welcome to Usuals. We're in private beta early access is invite-only. Have a code? Enter it below. No code? Pre-order now to reserve your spot.
+                  Welcome to Usuals. We're in private beta early access is invite-only. No code? Pre-order now to reserve your spot.
                   </p>
                 </div>
 
                 {/* Form */}
                 {showInvitationForm ? (
-                  <div className="flex-1 flex flex-col">
+                  <div className="flex-1 flex flex-col mt-0">
                     <div className="mb-6">
                       <label className="block text-white text-sm font-medium mb-3">Invitation code</label>
                       <input
@@ -249,7 +249,7 @@ export default function PreOrderPage() {
                       <p className="text-[#636f8a] text-sm mt-3">Don't have code?</p>
                     </div>
                     <button
-                      className="w-full border border-[#495266] text-[#636f8a] font-medium rounded-xl px-6 py-3 hover:border-[#fcc60e]/50 hover:text-[#fcc60e] transition-all duration-300 mb-auto mt-3"
+                      className="w-full border border-[#495266] text-[#636f8a] font-medium rounded-xl px-6 py-2 hover:border-[#fcc60e]/50 hover:text-[#fcc60e] transition-all duration-300 mb-20 "
                       onClick={() => setShowInvitationForm(false)}
                     >
                       Pre-order
@@ -376,7 +376,7 @@ export default function PreOrderPage() {
                         <div className="flex gap-3">
                           <button
                             type="button"
-                            className="flex-1 bg-[#0097fc] text-white mt-2 md:mb-2 font-medium rounded-xl px-6 py-2 hover:bg-[#0080d6] transform hover:scale-[1.02] transition-all duration-300 shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+                            className="flex-1 bg-[#0097fc] text-white mt-2 md:mb-2 font-medium rounded-xl px-6 py- hover:bg-[#0080d6] transform hover:scale-[1.02] transition-all duration-300 shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
                             disabled={
                               isSubmitting ||
                               !formData.fullName ||
@@ -391,7 +391,7 @@ export default function PreOrderPage() {
                           </button>
                           <button
                             type="button"
-                            className="flex-1 bg-[#fcc60e] text-black mt-2 md:mb-2 font-medium rounded-xl px-4  hover:bg-[#e6b30d] transform hover:scale-[1.02] transition-all duration-300 shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+                            className="flex-1 bg-[#fcc60e] text-black mt-2 md:mb-2 font-medium rounded-xl px-4 md:py-2  hover:bg-[#e6b30d] transform hover:scale-[1.02] transition-all duration-300 shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
                             disabled={
                               isSubmitting ||
                               !formData.fullName ||
@@ -402,7 +402,7 @@ export default function PreOrderPage() {
                             }
                             onClick={handleCrypto}
                           >
-                            {isSubmitting ? "Redirecting..." : "Pay with Solana"}
+                            {isSubmitting ? "Redirecting..." : (<span>Pay with <img src="/solana.png" alt="Solana" className="h-4 inline-block align-middle ml-1" /></span>)}
                           </button>
                         </div>
                       </div>

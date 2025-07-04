@@ -198,7 +198,7 @@ function SuccessContent() {
           >
             <div className="flex flex-col items-center justify-center">
               <p className="text-3xl font-bold text-[#fcc60e] mb-4">✅ Payment Verified!</p>
-              <p className="text-lg text-[#636f8a]">Registration complete! Thank you.</p>
+              <p className="text-lg text-[#636f8a]">We'll email you soon</p>
             </div>
           </motion.div>
         </main>
