@@ -215,7 +215,7 @@ export default function PreOrderPage() {
                 <div className="flex justify-center mb-6">
                   <div className="w-12 h-12 flex items-center justify-center">
                     <Image
-                      src="/logo.png"
+                      src="/image.png"
                       alt="Usuals.ai Logo"
                       width={48}
                       height={48}
