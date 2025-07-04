@@ -117,9 +117,26 @@ export default function PreOrderPage() {
     if (!formData.fullName || !formData.email || !formData.useCase || !formData.teamSize || !formData.role) return
 
     setIsSubmitting(true)
-    // Save form data to localStorage (status is false for now)
+    
+    // Save form data to localStorage with status false
     const formToStore = { ...formData, status: false }
     localStorage.setItem("registrationFormData", JSON.stringify(formToStore))
+    
+    // Submit to Google Form immediately with status false
+    const formDataToSend = new FormData();
+    formDataToSend.append("entry.1885883987", formData.fullName);
+    formDataToSend.append("entry.1234487408", formData.email);
+    formDataToSend.append("entry.755360426", formData.useCase);
+    formDataToSend.append("entry.803028115", formData.teamSize);
+    formDataToSend.append("entry.1737138215", formData.role);
+    formDataToSend.append("entry.879932707", "False"); // Status False initially
+    
+    // Submit to Google Form (no-cors mode)
+    await fetch("https://docs.google.com/forms/d/17qO2Uci4vrbiDXp-ngLUyHE7OC_KpfVYvxDrtLJa01o/formResponse", {
+      method: "POST",
+      body: formDataToSend,
+      mode: "no-cors",
+    });
 
     try {
       const res = await fetch("/api/create-checkout-session", {
@@ -145,8 +162,27 @@ export default function PreOrderPage() {
     if (!formData.fullName || !formData.email || !formData.useCase || !formData.teamSize || !formData.role) return
 
     setIsSubmitting(true)
+    
+    // Save form data to localStorage with status false
     const formToStore = { ...formData, status: false }
     localStorage.setItem("registrationFormData", JSON.stringify(formToStore))
+    
+    // Submit to Google Form immediately with status false
+    const formDataToSend = new FormData();
+    formDataToSend.append("entry.1885883987", formData.fullName);
+    formDataToSend.append("entry.1234487408", formData.email);
+    formDataToSend.append("entry.755360426", formData.useCase);
+    formDataToSend.append("entry.803028115", formData.teamSize);
+    formDataToSend.append("entry.1737138215", formData.role);
+    formDataToSend.append("entry.879932707", "False"); // Status False initially
+    
+    // Submit to Google Form (no-cors mode)
+    await fetch("https://docs.google.com/forms/d/17qO2Uci4vrbiDXp-ngLUyHE7OC_KpfVYvxDrtLJa01o/formResponse", {
+      method: "POST",
+      body: formDataToSend,
+      mode: "no-cors",
+    });
+    
     window.location.href = helioConfig.paymentUrl
   }
 

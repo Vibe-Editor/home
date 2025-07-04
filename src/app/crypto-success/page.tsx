@@ -102,35 +102,21 @@ function CryptoSuccessContent() {
         console.log("API verification result:", result);
 
         if (result.success && result.verified) {
-          // Payment successful - update form status and submit to Google Form
+          // Payment successful - update form status to true
           formData.status = true;
           
-          const formDataToSend = new FormData();
-          formDataToSend.append("entry.1885883987", formData.fullName);
-          formDataToSend.append("entry.1234487408", formData.email);
-          formDataToSend.append("entry.755360426", formData.useCase);
-          formDataToSend.append("entry.803028115", formData.teamSize);
-          formDataToSend.append("entry.1737138215", formData.role);
-          formDataToSend.append("entry.879932707", "True"); // Status True
-
-          console.log("Submitting to Google Form (crypto success):", {
-            fullName: formData.fullName,
-            email: formData.email,
-            useCase: formData.useCase,
-            teamSize: formData.teamSize,
-            role: formData.role,
-            status: true
-          });
-
-          await fetch(GOOGLE_FORM_URL, {
-            method: "POST",
-            body: formDataToSend,
-            mode: "no-cors",
-          });
-
+          // Update localStorage with new status
+          localStorage.setItem("registrationFormData", JSON.stringify(formData));
+          
+          console.log("Crypto payment verified - status updated to true for:", formData.email);
           setPaymentStatus('success');
         } else {
-          // Payment not found or failed - don't submit to Google Form
+          // Payment not found or failed - keep status as false
+          formData.status = false;
+          
+          // Update localStorage with status false
+          localStorage.setItem("registrationFormData", JSON.stringify(formData));
+          
           console.log("Crypto payment verification failed:", result.message);
           setPaymentStatus('failure');
         }

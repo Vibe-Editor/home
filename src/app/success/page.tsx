@@ -89,55 +89,18 @@ function SuccessContent() {
         if (!stored) throw new Error("No registration data found");
         const form = JSON.parse(stored);
         if (data.verified) {
-          // Payment verified, set status true
+          // Payment verified, update status to true
           form.status = true;
-          // Submit to Google Form
-          const formDataToSend = new FormData();
-          formDataToSend.append("entry.1885883987", form.fullName);
-          formDataToSend.append("entry.1234487408", form.email);
-          formDataToSend.append("entry.755360426", form.useCase);
-          formDataToSend.append("entry.803028115", form.teamSize);
-          formDataToSend.append("entry.1737138215", form.role);
-          formDataToSend.append("entry.879932707", "True"); // Status True (capitalized for dropdown)
-          // Debug log
-          console.log("Submitting to Google Form (success):", {
-            fullName: form.fullName,
-            email: form.email,
-            useCase: form.useCase,
-            teamSize: form.teamSize,
-            role: form.role,
-            status: true
-          });
-          await fetch(GOOGLE_FORM_URL, {
-            method: "POST",
-            body: formDataToSend,
-            mode: "no-cors",
-          });
+          // Update localStorage with new status
+          localStorage.setItem("registrationFormData", JSON.stringify(form));
+          console.log("Payment verified - status updated to true for:", form.email);
           setSubmitStatus("success");
         } else {
-          // Payment not verified, set status false
+          // Payment not verified, keep status as false
           form.status = false;
-          const formDataToSend = new FormData();
-          formDataToSend.append("entry.1885883987", form.fullName);
-          formDataToSend.append("entry.1234487408", form.email);
-          formDataToSend.append("entry.755360426", form.useCase);
-          formDataToSend.append("entry.803028115", form.teamSize);
-          formDataToSend.append("entry.1737138215", form.role);
-          formDataToSend.append("entry.879932707", "False"); // Status False (capitalized for dropdown)
-          // Debug log
-          console.log("Submitting to Google Form (fail):", {
-            fullName: form.fullName,
-            email: form.email,
-            useCase: form.useCase,
-            teamSize: form.teamSize,
-            role: form.role,
-            status: false
-          });
-          await fetch(GOOGLE_FORM_URL, {
-            method: "POST",
-            body: formDataToSend,
-            mode: "no-cors",
-          });
+          // Update localStorage with status false
+          localStorage.setItem("registrationFormData", JSON.stringify(form));
+          console.log("Payment not verified - status remains false for:", form.email);
           setSubmitStatus("fail");
         }
       })
