@@ -202,7 +202,7 @@ export default function PreOrderPage() {
                     <div className="flex items-center justify-center gap-2 mb-4">
                       <span className="text-3xl font-bold tracking-wide">Usuals.ai</span>
                     </div>
-                    <h2 className="mr-3 text-xl font-thin mb-2 tracking-tight">An AI video editor that turns your prompt into finished videos</h2>
+                    <h2 className="mr-3 text-xl font-thin mb-2 tracking-tight">An AI video editor that turns your prompt into finished videos.</h2>
                   </div>
                 </div>
               </div>
