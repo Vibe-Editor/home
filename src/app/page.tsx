@@ -178,24 +178,26 @@ export default function PreOrderPage() {
 
             {/* Desktop Background Cards */}
             {/* Left background card */}
-            <div className="hidden lg:block absolute top-2 bottom-2 left-2 right-1/2 bg-[#1F1F1E]/20 backdrop-blur-2xl border border-[#495266]/30 rounded-3xl transform scale-105 -z-10 ml-[9px] mr-[15px] mt-[39px] mb-[29px]"></div>
+            <div className="hidden w-[400px] lg:block absolute top-2 bottom-2  right-1/2 bg-[#1F1F1E]/20 backdrop-blur-2xl border border-[#495266]/30 rounded-3xl transform scale-105 -z-10 ml-[9px] mr-[15px] mt-[39px] mb-[29px]"></div>
             {/* Right background card */}
-            <div className="hidden lg:block absolute top-2 bottom-2 right-2 left-1/2 bg-[#1F1F1E]/20 backdrop-blur-2xl border border-[#495266]/30 rounded-3xl transform scale-105 -z-10 mr-[90px] ml-[15px] mt-[39px] mb-[29px]"></div>
+            <div className="hidden lg:block absolute top-2 bottom-2 right-2 left-1/2 bg-[#1F1F1E]/20 backdrop-blur-2xl border border-[#495266]/30 rounded-3xl transform scale-105 -z-10 mr-[90px] ml-[15px] mt-[39px] mb-[29px]">
+            
+            </div>
 
             {/* Main Cards Container with responsive spacing */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12 p-4 mr-0 lg:mr-[-25px]">
               {/* Left Card - Image with Overlay */}
-              <div className="bg-gradient-to-br from-blue-500 via-blue-600 to-blue-700 rounded-2xl overflow-hidden relative h-[500px] shadow-2xl mt-[26px] ml-[0px] mb-[17px]">
+              <div className="bg-gradient-to-br w-[400px]  from-blue-500 via-blue-600 to-blue-700 rounded-2xl overflow-hidden relative h-[500px] shadow-2xl mt-[26px] ml-[79px] mb-[17px]">
                 {/* Background Image Placeholder */}
-                <div className="absolute inset-0 bg-gradient-to-br from-blue-400 via-blue-500 to-blue-600">
-                  <div className="absolute inset-0 bg-[url('/placeholder.svg?height=500&width=400')] bg-cover bg-center opacity-80 mt-[-1px]"></div>
+                <div className="absolute w-[260px] inset-0 bg-gradient-to-br from-blue-400 via-blue-500 to-blue-600 ml-[100px]">
+                  <div className="absolute inset-0 bg-[url('/placeholder.svg?height=500&width=300')] bg-cover bg-center opacity-80 mt-[-1px]"></div>
                   {/* Golden Gate Bridge Style Elements */}
                   <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-green-600/60 to-transparent mb-0"></div>
                   <div className="absolute top-10 left-10 right-10 h-40 bg-gradient-to-b from-white/30 to-transparent rounded-full blur-3xl"></div>
                 </div>
 
                 {/* Overlay Content - Centered */}
-                <div className="absolute inset-0 flex items-center justify-center mr-[-4px]">
+                <div className="absolute w-[300px] inset-0 flex items-center justify-center mr-[-4px] ml-[75px]">
                   <div className="text-white text-center">
                     <div className="flex items-center justify-center gap-2 mb-4">
                       <div className="w-1 h-1 bg-white rounded-full"></div>
@@ -225,7 +227,7 @@ export default function PreOrderPage() {
                 {/* Welcome Text */}
                 <div className="text-center mb-8">
                   <p className="text-[#636f8a] text-sm leading-relaxed">
-                  Welcome to Usuals. We’re in private beta early access is invite-only. Have a code? Enter it below. No code? Pre-order now to reserve your spot.
+                  Welcome to Usuals. We're in private beta early access is invite-only. Have a code? Enter it below. No code? Pre-order now to reserve your spot.
                   </p>
                 </div>
 
