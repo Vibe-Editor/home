@@ -109,6 +109,32 @@ function CryptoSuccessContent() {
           localStorage.setItem("registrationFormData", JSON.stringify(formData));
           
           console.log("Crypto payment verified - status updated to true for:", formData.email);
+          console.log("Updated form data in localStorage:", formData);
+          
+          // Submit to Google Form with status true
+          const formDataToSend = new FormData();
+          formDataToSend.append("entry.1885883987", formData.fullName);
+          formDataToSend.append("entry.1234487408", formData.email);
+          formDataToSend.append("entry.755360426", formData.useCase);
+          formDataToSend.append("entry.803028115", formData.teamSize);
+          formDataToSend.append("entry.1737138215", formData.role);
+          formDataToSend.append("entry.879932707", "True"); 
+          
+          console.log("Submitting to Google Form with status true:", {
+            fullName: formData.fullName,
+            email: formData.email,
+            useCase: formData.useCase,
+            teamSize: formData.teamSize,
+            role: formData.role,
+            status: true
+          });
+          
+          await fetch(GOOGLE_FORM_URL, {
+            method: "POST",
+            body: formDataToSend,
+            mode: "no-cors",
+          });
+          
           setPaymentStatus('success');
         } else {
           // Payment not found or failed - keep status as false
@@ -118,6 +144,7 @@ function CryptoSuccessContent() {
           localStorage.setItem("registrationFormData", JSON.stringify(formData));
           
           console.log("Crypto payment verification failed:", result.message);
+          console.log("Form data remains false in localStorage:", formData);
           setPaymentStatus('failure');
         }
       } catch (err) {

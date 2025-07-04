@@ -83,17 +83,45 @@ function SuccessContent() {
     }
     fetch("/api/verify-session?session_id=" + encodeURIComponent(sessionId))
       .then(async (res) => {
+        console.log("Session verification response status:", res.status);
         if (!res.ok) throw new Error("Session verification failed");
         const data = await res.json();
+        console.log("Session verification data:", data);
         const stored = localStorage.getItem("registrationFormData");
         if (!stored) throw new Error("No registration data found");
         const form = JSON.parse(stored);
+        console.log("Retrieved form data from localStorage:", form);
         if (data.verified) {
           // Payment verified, update status to true
           form.status = true;
           // Update localStorage with new status
           localStorage.setItem("registrationFormData", JSON.stringify(form));
           console.log("Payment verified - status updated to true for:", form.email);
+          
+          // Submit to Google Form with status true
+          const formDataToSend = new FormData();
+          formDataToSend.append("entry.1885883987", form.fullName);
+          formDataToSend.append("entry.1234487408", form.email);
+          formDataToSend.append("entry.755360426", form.useCase);
+          formDataToSend.append("entry.803028115", form.teamSize);
+          formDataToSend.append("entry.1737138215", form.role);
+          formDataToSend.append("entry.879932707", "True"); // Status True
+          
+          console.log("Submitting to Google Form with status true:", {
+            fullName: form.fullName,
+            email: form.email,
+            useCase: form.useCase,
+            teamSize: form.teamSize,
+            role: form.role,
+            status: true
+          });
+          
+          await fetch(GOOGLE_FORM_URL, {
+            method: "POST",
+            body: formDataToSend,
+            mode: "no-cors",
+          });
+          
           setSubmitStatus("success");
         } else {
           // Payment not verified, keep status as false
