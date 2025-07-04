@@ -315,7 +315,7 @@ export default function PreOrderPage() {
                           !animating ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-5"
                         }`}
                       >
-                        <div className="mb-4">
+                        <div className="mb-2">
                           <select
                             value={formData.useCase}
                             onChange={(e) => handleInputChange("useCase", e.target.value)}
@@ -332,7 +332,7 @@ export default function PreOrderPage() {
                             <option value="Other">Other</option>
                           </select>
                         </div>
-                        <div className="mb-4">
+                        <div className="mb-2">
                           <select
                             value={formData.teamSize}
                             onChange={(e) => handleInputChange("teamSize", e.target.value)}
@@ -351,20 +351,30 @@ export default function PreOrderPage() {
                             <option value="1000+">1000+ people</option>
                           </select>
                         </div>
-                        <div className="mb-2">
-                          <input
-                            type="text"
-                            placeholder="Your Role"
+                        <div className="mb-1">
+                          <select
                             value={formData.role}
                             onChange={(e) => handleInputChange("role", e.target.value)}
-                            className="w-full px-4 py-3 rounded-xl border border-[#495266] bg-[#13151a]/50 text-white placeholder-[#636f8a] focus:outline-none focus:ring-2 focus:ring-[#fcc60e]/50 focus:border-[#fcc60e]/50 transition-all duration-300"
+                            className="w-full px-4 py-3 rounded-xl border border-[#495266] bg-[#13151a]/50 text-white focus:outline-none focus:ring-2 focus:ring-[#fcc60e]/50 focus:border-[#fcc60e]/50 transition-all duration-300 appearance-none cursor-pointer"
                             required
-                          />
+                          >
+                            <option value="" disabled>
+                              Select Your Role
+                            </option>
+                            <option value="Marketer">Marketer</option>
+                            <option value="Business Owner">Business Owner</option>
+                            <option value="Creative Director">Creative Director</option>
+                            <option value="Digital Marketing Agency">Digital Marketing Agency</option>
+                            <option value="Content Creator">Content Creator</option>
+                            <option value="Developer">Developer</option>
+                            <option value="Student">Student</option>
+                            <option value="Other">Other</option>
+                          </select>
                         </div>
                         <div className="flex gap-3">
                           <button
                             type="button"
-                            className="flex-1 bg-[#0097fc] text-white mt-3 font-medium rounded-xl px-6 py-1 hover:bg-[#0080d6] transform hover:scale-[1.02] transition-all duration-300 shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+                            className="flex-1 bg-[#0097fc] text-white mt-2 md:mb-2 font-medium rounded-xl px-6 py-2 hover:bg-[#0080d6] transform hover:scale-[1.02] transition-all duration-300 shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
                             disabled={
                               isSubmitting ||
                               !formData.fullName ||
@@ -379,7 +389,7 @@ export default function PreOrderPage() {
                           </button>
                           <button
                             type="button"
-                            className="flex-1 bg-[#fcc60e] text-black mt-3 font-medium rounded-xl px-4 py-2 hover:bg-[#e6b30d] transform hover:scale-[1.02] transition-all duration-300 shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+                            className="flex-1 bg-[#fcc60e] text-black mt-2 md:mb-2 font-medium rounded-xl px-4  hover:bg-[#e6b30d] transform hover:scale-[1.02] transition-all duration-300 shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
                             disabled={
                               isSubmitting ||
                               !formData.fullName ||
@@ -390,7 +400,7 @@ export default function PreOrderPage() {
                             }
                             onClick={handleCrypto}
                           >
-                            {isSubmitting ? "Redirecting..." : "Pay with Crypto"}
+                            {isSubmitting ? "Redirecting..." : "Pay with Solana"}
                           </button>
                         </div>
                       </div>
