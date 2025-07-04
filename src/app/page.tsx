@@ -186,15 +186,16 @@ export default function PreOrderPage() {
 
             {/* Main Cards Container with responsive spacing */}
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12 p-4 mr-0 lg:mr-[-25px]">
-              {/* Left Card - Image with Overlay */}
-              <div className="bg-gradient-to-br md:w-[404px]  bg-blue-500 rounded-2xl overflow-hidden relative h-[500px] shadow-2xl mt-[26px] md:ml-[79px] mb-[17px]">
-                {/* Background Image Placeholder */}
-                <div className="absolute w-[260px] inset-0 bg-gradient-to-br bg-blue-500 ml-[100px]">
-                  <div className="absolute inset-0 bg-[url('/placeholder.svg?height=500&width=300')] bg-cover bg-center opacity-80 mt-[-1px]"></div>
-                  {/* Golden Gate Bridge Style Elements */}
-                  <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t bg-blue-500  to-transparent mb-0"></div>
-                  <div className="absolute top-10 left-10 right-10 h-40 bg-gradient-to-b from-white/30 to-transparent rounded-full blur-3xl"></div>
-                </div>
+              {/* Left Card - Video with Overlay */}
+              <div className="bg-gradient-to-br md:w-[404px] rounded-2xl overflow-hidden relative h-[500px] shadow-2xl mt-[26px] md:ml-[79px] mb-[17px]">
+                <img 
+                  src="/vid.gif" 
+                  alt="Background animation"
+                  className="w-full h-full object-cover"
+                />
+                {/* Golden Gate Bridge Style Elements */}
+                <div className="absolute bottom-0 left-0 right-0 h-32  to-transparent"></div>
+                <div className="absolute top-10 left-10 right-10 h-40 bg-gradient-to-b from-white/30 to-transparent rounded-full blur-3xl"></div>
 
                 {/* Overlay Content - Bottom Center */}
                 <div className="absolute w-[300px] inset-0 flex items-end justify-center mr-[-4px] ml-[10px] md:ml-[50px] pb-8">
