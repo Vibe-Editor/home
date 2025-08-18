@@ -4,6 +4,7 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 
+
 export default function PricingPage() {
   const handlePayment = async (planType: string, teamMembers: number = 0) => {
     try {
@@ -47,13 +48,14 @@ export default function PricingPage() {
       
       <div className="relative min-h-screen flex items-center justify-center p-6">
         <div className="text-center max-w-6xl mx-auto">
-          {/* Logo Section */}
+
           <div className="mb-8 flex items-center justify-center">
             <Link href="/" className="flex items-center justify-center gap-2">
               <Image src="/Usuals Logo.svg" alt="Usuals Logo" width={40} height={40} className="h-10 w-10" />
               <span className="text-white font-bold text-3xl">Usuals</span>
             </Link>
           </div>
+
 
           {/* Header Section */}
           <div className="mb-12">
