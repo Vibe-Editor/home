@@ -4,8 +4,7 @@ import type React from "react"
 import { useState, type ChangeEvent, type FormEvent } from "react"
 import { useRouter } from "next/navigation"
 import { cn } from "@/lib/utils"
-import { helioConfig } from "@/lib/helio-config"
-import Image from "next/image"
+
 
 function Navbar() {
   const router = useRouter()
@@ -13,10 +12,11 @@ function Navbar() {
   return (
     <nav className="w-full fixed top-0 left-0 flex items-center justify-between py-4 px-4 sm:px-8 z-50">
       <div
-        className="text-xl sm:text-2xl font-normal tracking-wide text-[#fcc60e] cursor-pointer"
+        className="text-xl sm:text-2xl font-normal tracking-wide cursor-pointer flex items-center"
         onClick={() => router.push("/")}
       >
-        <img src='./image.png' className="w-28 h-28 object-contain inline-block align-middle ml-72" />
+        <img src='./Usuals Logo.svg' className="w-12 h-12 object-contain inline-block align-middle ml-64 mt-7" />
+        <span className="text-white font-bold text-4xl mt-5 ml-2">Usuals</span>
       </div>
     </nav>
   )

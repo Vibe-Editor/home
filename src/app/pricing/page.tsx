@@ -30,7 +30,7 @@ export default function PricingPage() {
     }
   };
 
-  const [collabMembers, setCollabMembers] = React.useState(3);
+  const collabMembers = 3;
 
   return (
     <div className="min-h-screen relative overflow-hidden bg-[#13151a] text-white">
@@ -48,9 +48,10 @@ export default function PricingPage() {
       <div className="relative min-h-screen flex items-center justify-center p-6">
         <div className="text-center max-w-6xl mx-auto">
           {/* Logo Section */}
-          <div className="mb-8">
-            <Link href="/" className="inline-block">
-              <Image src="/image.png" alt="Usuals Logo" width={28} height={28} className="mx-auto h-7 w-auto" />
+          <div className="mb-8 flex items-center justify-center">
+            <Link href="/" className="flex items-center justify-center gap-2">
+              <Image src="/Usuals Logo.svg" alt="Usuals Logo" width={40} height={40} className="h-10 w-10" />
+              <span className="text-white font-bold text-3xl">Usuals</span>
             </Link>
           </div>
 
@@ -142,10 +143,9 @@ export default function PricingPage() {
                     <input
                       id="teamMembers"
                       type="number"
-                      min={0}
-                      value={collabMembers}
-                      onChange={(e) => setCollabMembers(parseInt(e.target.value, 10) || 0)}
-                      className="w-16 bg-transparent border border-gray-700 rounded text-center text-white text-sm py-1 focus:outline-none"
+                      value={3}
+                      readOnly
+                      className="w-16 bg-transparent border border-gray-700 rounded text-center text-white text-sm py-1 opacity-70 pointer-events-none"
                     />
                   </div>
                 </div>
