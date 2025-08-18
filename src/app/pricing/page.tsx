@@ -30,23 +30,27 @@ export default function PricingPage() {
     }
   };
 
-  const [collabMembers, setCollabMembers] = React.useState(0);
+  const [collabMembers, setCollabMembers] = React.useState(3);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-950 via-black to-gray-900 text-white overflow-hidden">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 bg-gradient-to-r from-purple-900/10 via-transparent to-blue-900/10"></div>
-      <div className="absolute inset-0" style={{
-        backgroundImage: `radial-gradient(circle at 25% 25%, rgba(120, 119, 198, 0.1) 0%, transparent 50%),
-                         radial-gradient(circle at 75% 75%, rgba(59, 130, 246, 0.1) 0%, transparent 50%)`
-      }}></div>
+    <div className="min-h-screen relative overflow-hidden bg-[#13151a] text-white">
+      {/* Dotted Background */}
+      <div className="absolute inset-0 [background-size:20px_20px] [background-image:radial-gradient(#404040_1px,transparent_1px)]"></div>
+      {/* Center radial mask to darken edges */}
+      <div className="pointer-events-none absolute inset-0 flex items-center justify-center bg-[#13151a] [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"></div>
+      {/* Subtle animated circles */}
+      <div className="fixed inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute -top-40 -right-40 w-80 h-80 bg-[#fcc60e]/5 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-[#0097fc]/5 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }}></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-[#495266]/3 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '4s' }}></div>
+      </div>
       
       <div className="relative min-h-screen flex items-center justify-center p-6">
         <div className="text-center max-w-6xl mx-auto">
           {/* Logo Section */}
           <div className="mb-8">
             <Link href="/" className="inline-block">
-              <Image src="/image.png" alt="Usuals Logo" width={48} height={48} className="mx-auto h-12 w-auto" />
+              <Image src="/image.png" alt="Usuals Logo" width={28} height={28} className="mx-auto h-7 w-auto" />
             </Link>
           </div>
 
@@ -64,10 +68,10 @@ export default function PricingPage() {
           <div className="flex justify-center gap-8 flex-wrap">
             {/* $20 Plan Card */}
             <div className="group relative">
-              {/* Card Glow Effect */}
-              <div className="absolute -inset-1 bg-gradient-to-r from-purple-600 to-pink-600 rounded-2xl blur opacity-25 group-hover:opacity-75 transition duration-1000 group-hover:duration-200"></div>
               
-              <div className="relative bg-gray-900/50 backdrop-blur-xl border border-gray-800/50 shadow-2xl rounded-2xl p-6 max-w-xs transform hover:scale-105 transition-all duration-300 hover:shadow-purple-500/25 flex flex-col justify-between h-full min-h-[460px]">
+              <div className="relative w-80 backdrop-blur-xl border border-gray-800/50 shadow-2xl rounded-2xl p-6 transform hover:scale-105 transition-all duration-300 flex flex-col justify-between h-full min-h-[460px] bg-transparent" style={{
+                background: 'linear-gradient(135deg, rgba(179,192,206,0.10) 0%, rgba(19,21,26,1) 50%, rgba(179,192,206,0.10) 100%)'
+              }}>
                 <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
                   <span className="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-4 py-1 rounded-full text-sm font-medium">
                     Popular
@@ -115,13 +119,13 @@ export default function PricingPage() {
 
             {/* $89 Collaborative Plan Card */}
             <div className="group relative">
-              {/* Card Glow Effect */}
-              <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 rounded-2xl blur opacity-25 group-hover:opacity-75 transition duration-1000 group-hover:duration-200"></div>
               
-              <div className="relative bg-gray-900/50 backdrop-blur-xl border border-gray-800/50 shadow-2xl rounded-2xl p-6 max-w-xs transform hover:scale-105 transition-all duration-300 hover:shadow-blue-500/25 flex flex-col justify-between h-full min-h-[460px]">
+              <div className="relative w-80 backdrop-blur-xl border border-gray-800/50 shadow-2xl rounded-2xl p-6 transform hover:scale-105 transition-all duration-300 flex flex-col justify-between h-full min-h-[460px] bg-transparent" style={{
+                background: 'linear-gradient(135deg, rgba(179,192,206,0.10) 0%, rgba(19,21,26,1) 50%, rgba(179,192,206,0.10) 100%)'
+              }}>
                 <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
                   <span className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-4 py-1 rounded-full text-sm font-medium">
-                    Enterprise
+                    Collaborative
                   </span>
                 </div>
 
@@ -184,9 +188,10 @@ export default function PricingPage() {
 
             {/* $99 Founder Plan Card */}
             <div className="group relative">
-              <div className="absolute -inset-1 bg-gradient-to-r from-yellow-500 via-orange-500 to-red-500 rounded-2xl blur opacity-25 group-hover:opacity-75 transition duration-1000 group-hover:duration-200"></div>
-
-              <div className="relative bg-gray-900/50 backdrop-blur-xl border border-gray-800/50 shadow-2xl rounded-2xl p-6 max-w-xs transform hover:scale-105 transition-all duration-300 hover:shadow-yellow-500/25 flex flex-col justify-between h-full min-h-[460px]">
+              
+              <div className="relative w-80 backdrop-blur-xl border border-gray-800/50 shadow-2xl rounded-2xl p-6 transform hover:scale-105 transition-all duration-300 flex flex-col justify-between h-full min-h-[460px] bg-transparent" style={{
+                background: 'linear-gradient(135deg, rgba(179,192,206,0.10) 0%, rgba(19,21,26,1) 50%, rgba(179,192,206,0.10) 100%)'
+              }}>
                 <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
                   <span className="bg-gradient-to-r from-yellow-500 to-red-500 text-white px-4 py-1 rounded-full text-sm font-medium">
                     Limited (100)
@@ -195,9 +200,9 @@ export default function PricingPage() {
 
                 <div className="text-center mb-6 mt-3">
                   <div className="flex items-baseline justify-center mb-2">
-                    <span className="text-3xl font-bold">$99</span>
+                    <span className="text-3xl font-bold">Enterprise</span>
                   </div>
-                  <h2 className="text-xl font-semibold text-white mb-2">Founder Plan</h2>
+                  <h2 className="text-xl font-semibold text-white mb-2">Reach Out</h2>
                   <p className="text-gray-400 text-sm">Early supporter — limited to 100 slots</p>
                 </div>
 
@@ -214,14 +219,22 @@ export default function PricingPage() {
                     </svg>
                     Priority roadmap influence
                   </div>
+                  <div className="flex items-center text-gray-300 text-sm">
+                    <svg className="w-4 h-4 text-green-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    Only 100 slots available
+                  </div>
                 </div>
 
-                <button
-                  onClick={() => handlePayment('FounderPlan')}
-                  className="w-full bg-gradient-to-r from-yellow-500 to-red-500 hover:from-yellow-600 hover:to-red-600 text-white py-3 px-6 rounded-xl font-semibold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-yellow-500/50 text-sm"
+                <a
+                  href="https://t.me/tusharsinha"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full inline-block bg-gradient-to-r from-yellow-500 to-red-500 hover:from-yellow-600 hover:to-red-600 text-white py-3 px-6 rounded-xl font-semibold text-center transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-yellow-500/50 text-sm"
                 >
-                  Become a Founder
-                </button>
+                  Reach Out
+                </a>
               </div>
             </div>
           </div>
@@ -229,7 +242,7 @@ export default function PricingPage() {
           {/* Bottom Section */}
           <div className="mt-12 text-center">
             <p className="text-gray-400">
-              🔒 Secure payment processing
+              🔒 Secure payment processing With Stripe
             </p>
           </div>
         </div>

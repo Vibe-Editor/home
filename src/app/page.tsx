@@ -16,7 +16,7 @@ function Navbar() {
         className="text-xl sm:text-2xl font-normal tracking-wide text-[#fcc60e] cursor-pointer"
         onClick={() => router.push("/")}
       >
-        <img src='./image.png' className="w-8 h-8 object-contain inline-block align-middle" />
+        <img src='./image.png' className="w-28 h-28 object-contain inline-block align-middle ml-72" />
       </div>
     </nav>
   )
@@ -95,7 +95,8 @@ export default function PreOrderPage() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [step, setStep] = useState(1)
   const [animating, setAnimating] = useState(false)
-  const [showInvitationForm, setShowInvitationForm] = useState(true)
+  // Invitation code flow removed – directly show pre-order form
+  const [showInvitationForm, setShowInvitationForm] = useState(false)
 
   const handleInputChange = (field: string, value: string) => {
     setFormData((prev) => ({ ...prev, [field]: value }))
@@ -184,9 +185,9 @@ export default function PreOrderPage() {
             </div> */}
 
             {/* Main Cards Container with responsive spacing */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12 p-4 mr-0 lg:mr-[-25px]">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12 p-4 justify-center items-start">
               {/* Left Card - Video with Overlay */}
-              <div className="bg-gradient-to-br md:w-[404px] rounded-2xl overflow-hidden relative h-[500px] shadow-2xl mt-[26px] md:ml-[79px] mb-[17px]">
+              <div className="bg-gradient-to-br w-[404px] rounded-2xl overflow-hidden relative h-[500px] shadow-2xl mt-[26px] mb-[17px] mx-auto">
                 <img 
                   src="/vid.gif" 
                   alt="Background animation"
@@ -208,53 +209,9 @@ export default function PreOrderPage() {
               </div>
 
               {/* Right Card - Invitation Form */}
-              <div className="bg-gradient-to-b from-[#1F1F1E]/80 via-[#1F1F1E]/80 via-[#1F1F1E]/60 to-[#0a0a0a] backdrop-blur-xl border border-[#495266] rounded-2xl p-4 shadow-2xl h-[500px] flex flex-col px-4 py-4 mx-0 lg:mx-[-13px] mt-[26px] mb-[17px] lg:mr-[105px] lg:ml-[-24px]">
-                {/* Logo */}
-                <div className="flex justify-center mb-6">
-                  <div className=" mt-3 w-7 h-7 flex items-center justify-center">
-                    <Image
-                      src="/image.png"
-                      alt="Usuals.ai Logo"
-                      width={48}
-                      height={48}
-                      className="w-full h-full object-contain"
-                    />
-                  </div>
-                </div>
-
-                {/* Welcome Text */}
-                <div className="text-center mb-8">
-                  <p className="text-[#636f8a] text-sm leading-relaxed">
-                  Welcome to Usuals. We're in private beta early access is invite-only. No code? Pre-order now to reserve your spot.
-                  </p>
-                </div>
-
-                {/* Form */}
-                {showInvitationForm ? (
-                  <div className="flex-1 flex flex-col mt-0">
-                    <div className="mb-6">
-                      <label className="block text-white text-sm font-medium mb-3">Invitation code</label>
-                      <input
-                        type="text"
-                        placeholder="Enter your invitation code"
-                        className="w-full px-4 py-3 rounded-xl border border-[#495266] bg-[#13151a]/50 text-white placeholder-[#636f8a] focus:outline-none focus:ring-2 focus:ring-[#fcc60e]/50 focus:border-[#fcc60e]/50 transition-all duration-300"
-                      />
-                    </div>
-                    <button className="w-full bg-white text-black font-medium rounded-xl px-6 py-3 hover:bg-gray-100 transition-all duration-300 mb-6">
-                      Get started
-                    </button>
-                    <div className="text-center mb-6">
-                      <p className="text-[#636f8a] text-sm mt-3">Don't have code?</p>
-                    </div>
-                    <button
-                      className="w-full border border-[#fcc60e] text-[#fcc60e] font-medium rounded-xl px-6 py-2 hover:bg-[#fcc60e] hover:text-black transition-all duration-300 mb-20 mt-4 "
-                      onClick={() => setShowInvitationForm(false)}
-                    >
-                      Pre-order
-                    </button>
-                  </div>
-                ) : (
-                  <div className="flex-1 flex flex-col">
+              <div className="bg-gradient-to-b from-[#1F1F1E]/80 via-[#1F1F1E]/80 via-[#1F1F1E]/60 to-[#0a0a0a] backdrop-blur-xl border border-[#495266] rounded-2xl p-4 shadow-2xl h-[500px] flex flex-col px-4 py-4 mt-[26px] mb-[17px] w-[404px] mx-auto">
+                {/* Pre-order form */}
+                <div className="flex-1 flex flex-col">
                     {/* Step Progress Indicator */}
                     <div className="flex justify-center mb-6">
                       <div className="flex gap-2">
@@ -374,7 +331,7 @@ export default function PreOrderPage() {
                         <div className="flex gap-3">
                           <button
                             type="button"
-                            className="flex-1 bg-[#0097fc] text-white mt-2 md:mb-2 font-medium rounded-xl px-6 py- hover:bg-[#0080d6] transform hover:scale-[1.02] transition-all duration-300 shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+                            className="flex-1 bg-[#0097fc] text-white mt-2 md:mb-2 font-medium rounded-xl px-6 py-3 hover:bg-[#0080d6] transform hover:scale-[1.02] transition-all duration-300 shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
                             disabled={
                               isSubmitting ||
                               !formData.fullName ||
@@ -387,7 +344,7 @@ export default function PreOrderPage() {
                           >
                             {isSubmitting ? "Redirecting..." : "Pay with Stripe"}
                           </button>
-                          <button
+                          {/* <button
                             type="button"
                             className="flex-1 bg-[#fcc60e] text-black mt-2 md:mb-2 font-medium rounded-xl px-4 md:py-2  hover:bg-[#e6b30d] transform hover:scale-[1.02] transition-all duration-300 shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
                             disabled={
@@ -401,17 +358,17 @@ export default function PreOrderPage() {
                             onClick={handleCrypto}
                           >
                             {isSubmitting ? "Redirecting..." : (<span>Pay with <img src="/solana.png" alt="Solana" className="h-4 inline-block align-middle ml-1" /></span>)}
-                          </button>
+                          </button> */}
                         </div>
                       </div>
                     )}
                   </div>
-                )}
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
+     
     </>
   )
 }
