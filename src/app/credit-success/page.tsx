@@ -89,6 +89,37 @@ function CreditSuccessContent() {
     }
 
     const processPayment = async () => {
+      // Double check: both localStorage and server-side tracking
+      const localProcessedSessions = JSON.parse(localStorage.getItem('processedCreditSessions') || '[]');
+      if (localProcessedSessions.includes(sessionId)) {
+        console.log("Session already processed (localStorage):", sessionId);
+        setPurchaseStatus("success");
+        setLoading(false);
+        return;
+      }
+
+      // Check server-side tracking
+      try {
+        const trackResponse = await fetch('/api/track-session', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ sessionId, action: 'check' })
+        });
+        const trackData = await trackResponse.json();
+        
+        if (trackData.processed) {
+          console.log("Session already processed (server):", sessionId);
+          // Also update localStorage to sync
+          localProcessedSessions.push(sessionId);
+          localStorage.setItem('processedCreditSessions', JSON.stringify(localProcessedSessions));
+          setPurchaseStatus("success");
+          setLoading(false);
+          return;
+        }
+      } catch (trackError) {
+        console.warn("Could not check server session tracking:", trackError);
+        // Continue with processing but rely on localStorage
+      }
       try {
         // First verify the Stripe session
         const verifyResponse = await fetch(`/api/verify-session?session_id=${encodeURIComponent(sessionId)}`);
@@ -127,6 +158,22 @@ function CreditSuccessContent() {
 
         const backendData = await backendResponse.json();
         console.log("Backend response:", backendData);
+        
+        // Mark this session as processed to prevent duplicate processing
+        const processedSessions = JSON.parse(localStorage.getItem('processedCreditSessions') || '[]');
+        processedSessions.push(sessionId);
+        localStorage.setItem('processedCreditSessions', JSON.stringify(processedSessions));
+        
+        // Also mark on server-side
+        try {
+          await fetch('/api/track-session', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ sessionId, action: 'mark' })
+          });
+        } catch (markError) {
+          console.warn("Could not mark session on server:", markError);
+        }
         
         setPurchaseStatus("success");
       } catch (err) {

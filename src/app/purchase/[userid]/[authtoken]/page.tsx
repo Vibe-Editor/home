@@ -10,7 +10,7 @@ const CREDIT_PACKAGES = [
   {
     id: 'package_1000',
     credits: 1000,
-    price: 100,
+    price: 0.5,
     popular: true,
     description: 'Perfect for regular users'
   },
