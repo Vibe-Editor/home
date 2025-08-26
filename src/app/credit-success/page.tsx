@@ -107,7 +107,7 @@ function CreditSuccessContent() {
         const paymentId = generatePaymentId();
 
         // Send credits to backend
-        const backendResponse = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL || 'http://localhost:3001'}/credits/purchase`, {
+        const backendResponse = await fetch(`https://backend.usuals.ai/credits/purchase`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
